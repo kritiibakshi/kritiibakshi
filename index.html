@@ -86,6 +86,7 @@
 
     // Toggle menu open/close on click
     menuContainer.addEventListener('click', function(e) {
+      e.preventDefault();
       if (!menuContainer.classList.contains('open')) {
         menuContainer.classList.add('open');
         menuContainer.setAttribute('aria-expanded', 'true');
