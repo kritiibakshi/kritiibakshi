@@ -126,19 +126,21 @@ body {
   pointer-events: none;
   white-space: nowrap;
 }
-.nav-link::after { content: attr(data-label); }
-.menu-nav-link .dropdown-label { content: "Menu"; }
 
+.nav-link::after { 
+  content: attr(data-label); 
+}
+
+/* Show labels on hover/focus (but NOT the dropdown menu) */
 .nav-link:hover::after,
 .nav-link:focus::after,
 .menu-nav-link:hover .dropdown-label,
-.menu-nav-link:focus .dropdown-label,
-.menu-nav-link.open .dropdown-label {
+.menu-nav-link:focus .dropdown-label {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Hamburger Dropdown menu */
+/* Hamburger Dropdown menu - ONLY shows when .open class is present */
 .hamburger-menu {
   position: absolute;
   top: 50px;
@@ -156,8 +158,7 @@ body {
   text-align: left;
 }
 
-.menu-nav-link:hover .hamburger-menu,
-.menu-nav-link:focus-within .hamburger-menu,
+/* ONLY show dropdown when .open class is applied via JavaScript */
 .menu-nav-link.open .hamburger-menu {
   opacity: 1;
   pointer-events: auto;
@@ -280,7 +281,15 @@ footer {
   .hero h1 {
     font-size: 2.5rem;
   }
-  .menu-nav-link .icon { width: 34px; height: 34px; }
-  .hamburger-menu { min-width: 110px; padding: 8px 13px; }
-  .hamburger-menu a { font-size: .95rem; }
+  .menu-nav-link .icon { 
+    width: 34px; 
+    height: 34px; 
+  }
+  .hamburger-menu { 
+    min-width: 110px; 
+    padding: 8px 13px; 
+  }
+  .hamburger-menu a { 
+    font-size: .95rem; 
+  }
 }
