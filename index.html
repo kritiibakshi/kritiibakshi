@@ -7,264 +7,21 @@
   <meta name="description" content="Kriti Bakshi - Illustrator & Visual Storyteller's portfolio showcasing artwork and projects." />
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    /* === RESET === */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #fafafa;
-      color: #1a1a1a;
-      line-height: 1.6;
-    }
-
-    /* === HERO === */
-    .hero {
-      position: relative;
-      height: 90vh;
-      background:
-        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-        url('images/hero-bg.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-      padding: 0 60px; /* Extra for hamburger */
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 1.3rem;
-      font-weight: 300;
-      letter-spacing: 0.5px;
-    }
-
-    /* === ICON NAV === */
-    .topnav {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      display: flex;
-      gap: 18px;
-      z-index: 100;
-    }
-
-    .nav-link {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .icon {
-      width: 24px;
-      height: 24px;
-      padding: 6px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.9);
-      filter: invert(0%) brightness(0%);
-      transition: all 0.3s ease;
-    }
-
-    .nav-link:hover .icon {
-      background: #e0e0e0;
-      filter: invert(30%) brightness(1.2);
-    }
-
-    /* Label under nav links */
-    .nav-link::after {
-      content: attr(data-label);
-      position: absolute;
-      bottom: -28px;
-      font-size: 0.7rem;
-      padding: 4px 6px;
-      color: #888;
-      background: #f2f2f2;
-      border-radius: 4px;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .nav-link:hover::after {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-
-    /* === GRID WORK SECTION === */
-    .work {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .work h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 50px;
-      color: #222;
-      position: relative;
-    }
-
-    .work h2::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: #888;
-      margin: 15px auto 0;
-      border-radius: 3px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-      padding: 0 10px;
-    }
-
-    .card {
-      border-radius: 12px;
-      overflow: hidden;
-      background: #fff;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-    }
-
-    .card a {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .card a img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover a img {
-      transform: scale(1.04);
-    }
-
-    .card p {
-      padding: 15px;
-      text-align: center;
-      font-size: 1.1rem;
-      font-weight: 500;
-    }
-
-    /* === FOOTER === */
-    footer {
-      text-align: center;
-      padding: 25px 10px;
-      font-size: 0.9rem;
-      color: #555;
-      background: #f0f0f0;
-    }
-
-    /* === HAMBURGER MENU === */
-
-    /* Hamburger Button */
-    #hamburger-btn {
-      position: absolute;
-      top: 20px;
-      left: 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 28px;
-      height: 24px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      z-index: 110; /* above other elements */
-      padding: 0;
-    }
-
-    #hamburger-btn:focus {
-      outline: 2px solid #4caf50;
-    }
-
-    #hamburger-btn .bar {
-      width: 100%;
-      height: 3px;
-      background-color: white; /* adjust if needed */
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-
-    /* Hamburger Menu Panel */
-    .hamburger-menu {
-      position: absolute;
-      top: 60px; /* below button */
-      left: 20px;
-      background: #333;
-      border-radius: 8px;
-      padding: 10px 20px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-      min-width: 150px;
-      z-index: 105;
-    }
-
-    .hamburger-menu ul {
-      list-style: none;
-    }
-
-    .hamburger-menu ul li {
-      margin-bottom: 12px;
-    }
-
-    .hamburger-menu ul li:last-child {
-      margin-bottom: 0;
-    }
-
-    .hamburger-menu a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      display: block;
-    }
-
-    .hamburger-menu a:hover,
-    .hamburger-menu a:focus {
-      color: #4caf50;
-      outline: none;
-    }
-  </style>
 </head>
 <body>
   <header class="hero">
-    <!-- Hamburger Menu Button -->
-    <button id="hamburger-btn" aria-label="Toggle Menu" aria-expanded="false" aria-controls="hamburger-menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
+    <!-- Hamburger Menu Button styled like icon nav-link -->
+    <a href="javascript:void(0);" id="hamburger-nav-link" class="nav-link" data-label="Menu" aria-label="Toggle Menu" aria-expanded="false" aria-controls="hamburger-menu">
+      <span id="hamburger-btn" class="icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <rect y="5" width="24" height="2" rx="1.1" fill="currentColor"></rect>
+          <rect y="11" width="24" height="2" rx="1.1" fill="currentColor"></rect>
+          <rect y="17" width="24" height="2" rx="1.1" fill="currentColor"></rect>
+        </svg>
+      </span>
+    </a>
 
-    <!-- Hamburger Menu Content -->
+    <!-- Hamburger Menu Popup -->
     <nav id="hamburger-menu" class="hamburger-menu" hidden>
       <ul>
         <li>
@@ -278,6 +35,7 @@
       </ul>
     </nav>
 
+    <!-- Social/Contact Icons (Right) -->
     <nav class="topnav">
       <a href="https://www.behance.net/kritibakshi1" target="_blank" rel="noopener noreferrer" class="nav-link" data-label="Behance">
         <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/behance.svg" alt="Behance Icon" loading="lazy" class="icon" />
@@ -331,25 +89,28 @@
   </footer>
 
   <script>
-    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const hamburgerNavLink = document.getElementById('hamburger-nav-link');
     const hamburgerMenu = document.getElementById('hamburger-menu');
 
-    hamburgerBtn.addEventListener('click', () => {
+    hamburgerNavLink.addEventListener('click', (e) => {
+      e.preventDefault();
       const isHidden = hamburgerMenu.hasAttribute('hidden');
       if (isHidden) {
         hamburgerMenu.removeAttribute('hidden');
-        hamburgerBtn.setAttribute('aria-expanded', 'true');
+        hamburgerNavLink.setAttribute('aria-expanded', 'true');
       } else {
         hamburgerMenu.setAttribute('hidden', '');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        hamburgerNavLink.setAttribute('aria-expanded', 'false');
       }
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-      if (!hamburgerMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+      if (
+        !hamburgerMenu.contains(e.target) &&
+        !hamburgerNavLink.contains(e.target)
+      ) {
         hamburgerMenu.setAttribute('hidden', '');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        hamburgerNavLink.setAttribute('aria-expanded', 'false');
       }
     });
   </script>
