@@ -85,9 +85,7 @@
     const menuContainer = document.getElementById('menu-container');
     const menuPopup = document.getElementById('hamburger-menu');
 
-    // Open menu on click/tap, close on 2nd click
     menuContainer.addEventListener('click', function(e) {
-      // Only open/close if not hovering (works well on touch devices)
       if(!menuContainer.classList.contains('open')) {
         menuContainer.classList.add('open');
         menuContainer.setAttribute('aria-expanded', 'true');
@@ -97,7 +95,6 @@
       }
     });
 
-    // Close on click outside
     document.addEventListener('mousedown', function(e) {
       if (!menuContainer.contains(e.target)) {
         menuContainer.classList.remove('open');
@@ -105,7 +102,6 @@
       }
     });
 
-    // Keyboard: close on Escape
     menuContainer.addEventListener('keydown', function(e) {
       if (e.key === "Escape") {
         menuContainer.classList.remove('open');
