@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kriti Bakshi | Portfolio</title>
   <meta name="description" content="Kriti Bakshi - Illustrator & Visual Storyteller's portfolio showcasing artwork and projects." />
   <link rel="stylesheet" href="style.css" />
@@ -10,9 +10,9 @@
 </head>
 <body>
   <header class="hero">
-    <!-- Hamburger Menu as Icon -->
+    <!-- Hamburger Menu Container -->
     <div class="nav-link menu-nav-link" id="menu-container" tabindex="0" aria-haspopup="true" aria-expanded="false">
-      <span class="icon" id="hamburger-btn">
+      <span class="icon" id="hamburger-btn" aria-label="Toggle menu" role="button" tabindex="0">
         <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <rect y="5" width="24" height="2" rx="1.1" fill="currentColor"/>
           <rect y="11" width="24" height="2" rx="1.1" fill="currentColor"/>
@@ -20,7 +20,7 @@
         </svg>
       </span>
       <span class="dropdown-label">Menu</span>
-      <nav class="hamburger-menu" id="hamburger-menu" tabindex="-1">
+      <nav class="hamburger-menu" id="hamburger-menu" tabindex="-1" aria-label="Hamburger menu">
         <ul>
           <li><a href="https://www.behance.net/kritibakshi1" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
           <li><a href="#">Visit Shop</a></li>
@@ -28,7 +28,7 @@
       </nav>
     </div>
 
-    <!-- Social/Contact Icons (Right) -->
+    <!-- Right side nav icons -->
     <nav class="topnav">
       <a href="https://www.behance.net/kritibakshi1" target="_blank" rel="noopener noreferrer" class="nav-link" data-label="Behance">
         <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/behance.svg" alt="Behance Icon" loading="lazy" class="icon" />
@@ -83,10 +83,10 @@
 
   <script>
     const menuContainer = document.getElementById('menu-container');
-    const menuPopup = document.getElementById('hamburger-menu');
 
+    // Toggle menu open/close on click
     menuContainer.addEventListener('click', function(e) {
-      if(!menuContainer.classList.contains('open')) {
+      if (!menuContainer.classList.contains('open')) {
         menuContainer.classList.add('open');
         menuContainer.setAttribute('aria-expanded', 'true');
       } else {
@@ -95,6 +95,7 @@
       }
     });
 
+    // Close menu when clicking outside
     document.addEventListener('mousedown', function(e) {
       if (!menuContainer.contains(e.target)) {
         menuContainer.classList.remove('open');
@@ -102,6 +103,7 @@
       }
     });
 
+    // Close menu on Escape key
     menuContainer.addEventListener('keydown', function(e) {
       if (e.key === "Escape") {
         menuContainer.classList.remove('open');
