@@ -7,22 +7,24 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #ffffff;
+  background-color: #fafafa;
   color: #1a1a1a;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease;
 }
 
 /* === HERO SECTION === */
 .hero {
   height: 90vh;
-  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
               url('images/hero-bg.jpg') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: #fff;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .hero h1 {
@@ -30,12 +32,14 @@ body {
   font-size: 4rem;
   font-weight: 700;
   margin-bottom: 10px;
+  animation: slideUp 1s ease;
 }
 
 .hero p {
   font-size: 1.3rem;
   font-weight: 300;
   letter-spacing: 0.5px;
+  animation: slideUp 1.2s ease;
 }
 
 /* === WORK SECTION === */
@@ -43,6 +47,7 @@ body {
   padding: 80px 20px;
   max-width: 1200px;
   margin: auto;
+  animation: fadeIn 1s ease;
 }
 
 .work h2 {
@@ -51,6 +56,17 @@ body {
   text-align: center;
   margin-bottom: 50px;
   color: #222;
+  position: relative;
+}
+
+.work h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #ff6f61; /* Accent color */
+  margin: 15px auto 0;
+  border-radius: 3px;
 }
 
 /* === GRID === */
@@ -59,20 +75,21 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 30px;
   padding: 0 10px;
+  animation: fadeIn 1s ease;
 }
 
 /* === CARD === */
 .card {
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
   background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .card a {
@@ -105,6 +122,17 @@ footer {
   text-align: center;
   padding: 25px 10px;
   font-size: 0.9rem;
-  color: #777;
-  background: #f8f8f8;
+  color: #555;
+  background: #f0f0f0;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
