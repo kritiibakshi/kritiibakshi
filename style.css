@@ -1,26 +1,55 @@
-/* === TOP NAV ICONS === */
+/* === TOP NAV ICONS WITH HOVER LABELS === */
 .topnav {
   position: absolute;
   top: 20px;
   right: 30px;
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 18px;
   z-index: 100;
 }
 
+.nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .icon {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   background-color: rgba(255, 255, 255, 0.85);
-  padding: 5px;
+  padding: 6px;
   border-radius: 50%;
   filter: invert(0%) brightness(0%);
   transition: transform 0.3s ease, background 0.3s ease, filter 0.3s ease;
 }
 
-.icon:hover {
-  transform: scale(1.15);
+.nav-link:hover .icon {
+  transform: scale(1.2);
   background-color: #ff6f61;
   filter: invert(100%);
+}
+
+/* Hover Label */
+.nav-link::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: -28px;
+  background: #ff6f61;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.nav-link:hover::after {
+  opacity: 1;
+  transform: translateY(0);
 }
