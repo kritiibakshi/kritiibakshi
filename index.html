@@ -8,21 +8,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <!-- HAMBURGER MENU BUTTON -->
+  <!-- Hamburger -->
   <div class="hamburger" id="hamburger">
     <span></span>
     <span></span>
     <span></span>
   </div>
 
-  <!-- SIDEBAR MENU -->
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <a href="https://www.behance.net/kritibakshi1" target="_blank">Portfolio</a>
-    <a href="https://www.instamojo.com/" target="_blank">Visit Shop</a>
+    <a href="https://instamojo.com" target="_blank">Visit Shop</a>
   </div>
 
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Hero Section -->
   <header class="hero">
-    <!-- TOP-RIGHT ICONS -->
     <nav class="topnav">
       <a href="https://www.behance.net/kritibakshi1" target="_blank" class="nav-link" data-label="Behance">
         <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/behance.svg" alt="Behance" class="icon" />
@@ -75,14 +78,19 @@
     <p>© 2025 Kriti Bakshi. All Rights Reserved.</p>
   </footer>
 
-  <!-- SCRIPT FOR HAMBURGER -->
   <script>
     const hamburger = document.getElementById('hamburger');
     const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
 
     hamburger.addEventListener('click', () => {
       sidebar.classList.toggle('active');
-      hamburger.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
     });
   </script>
 </body>
