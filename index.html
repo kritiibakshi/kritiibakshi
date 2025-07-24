@@ -10,30 +10,23 @@
 </head>
 <body>
   <header class="hero">
-    <!-- Hamburger Menu Button styled like icon nav-link -->
-    <a href="javascript:void(0);" id="hamburger-nav-link" class="nav-link" data-label="Menu" aria-label="Toggle Menu" aria-expanded="false" aria-controls="hamburger-menu">
-      <span id="hamburger-btn" class="icon">
+    <!-- Hamburger Menu as Icon -->
+    <div class="nav-link menu-nav-link" id="menu-container" tabindex="0" aria-haspopup="true" aria-expanded="false">
+      <span class="icon" id="hamburger-btn">
         <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <rect y="5" width="24" height="2" rx="1.1" fill="currentColor"></rect>
-          <rect y="11" width="24" height="2" rx="1.1" fill="currentColor"></rect>
-          <rect y="17" width="24" height="2" rx="1.1" fill="currentColor"></rect>
+          <rect y="5" width="24" height="2" rx="1.1" fill="currentColor"/>
+          <rect y="11" width="24" height="2" rx="1.1" fill="currentColor"/>
+          <rect y="17" width="24" height="2" rx="1.1" fill="currentColor"/>
         </svg>
       </span>
-    </a>
-
-    <!-- Hamburger Menu Popup -->
-    <nav id="hamburger-menu" class="hamburger-menu" hidden>
-      <ul>
-        <li>
-          <a href="https://www.behance.net/kritibakshi1" target="_blank" rel="noopener noreferrer">
-            Portfolio
-          </a>
-        </li>
-        <li>
-          <a href="#">Visit Shop</a>
-        </li>
-      </ul>
-    </nav>
+      <span class="dropdown-label">Menu</span>
+      <nav class="hamburger-menu" id="hamburger-menu" tabindex="-1">
+        <ul>
+          <li><a href="https://www.behance.net/kritibakshi1" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
+          <li><a href="#">Visit Shop</a></li>
+        </ul>
+      </nav>
+    </div>
 
     <!-- Social/Contact Icons (Right) -->
     <nav class="topnav">
@@ -89,28 +82,35 @@
   </footer>
 
   <script>
-    const hamburgerNavLink = document.getElementById('hamburger-nav-link');
-    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const menuContainer = document.getElementById('menu-container');
+    const menuPopup = document.getElementById('hamburger-menu');
 
-    hamburgerNavLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      const isHidden = hamburgerMenu.hasAttribute('hidden');
-      if (isHidden) {
-        hamburgerMenu.removeAttribute('hidden');
-        hamburgerNavLink.setAttribute('aria-expanded', 'true');
+    // Open menu on click/tap, close on 2nd click
+    menuContainer.addEventListener('click', function(e) {
+      // Only open/close if not hovering (works well on touch devices)
+      if(!menuContainer.classList.contains('open')) {
+        menuContainer.classList.add('open');
+        menuContainer.setAttribute('aria-expanded', 'true');
       } else {
-        hamburgerMenu.setAttribute('hidden', '');
-        hamburgerNavLink.setAttribute('aria-expanded', 'false');
+        menuContainer.classList.remove('open');
+        menuContainer.setAttribute('aria-expanded', 'false');
       }
     });
 
-    document.addEventListener('click', (e) => {
-      if (
-        !hamburgerMenu.contains(e.target) &&
-        !hamburgerNavLink.contains(e.target)
-      ) {
-        hamburgerMenu.setAttribute('hidden', '');
-        hamburgerNavLink.setAttribute('aria-expanded', 'false');
+    // Close on click outside
+    document.addEventListener('mousedown', function(e) {
+      if (!menuContainer.contains(e.target)) {
+        menuContainer.classList.remove('open');
+        menuContainer.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Keyboard: close on Escape
+    menuContainer.addEventListener('keydown', function(e) {
+      if (e.key === "Escape") {
+        menuContainer.classList.remove('open');
+        menuContainer.setAttribute('aria-expanded', 'false');
+        menuContainer.blur();
       }
     });
   </script>
