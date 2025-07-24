@@ -1,3 +1,44 @@
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fafafa;
+  color: #1a1a1a;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === HERO SECTION === */
+.hero {
+  position: relative;
+  height: 90vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+              url('images/hero-bg.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
 /* === TOP NAV ICONS WITH HOVER LABELS === */
 .topnav {
   position: absolute;
@@ -52,4 +93,86 @@
 .nav-link:hover::after {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* === WORK SECTION === */
+.work {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.work h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 50px;
+  color: #222;
+  position: relative;
+}
+
+.work h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #ff6f61;
+  margin: 15px auto 0;
+  border-radius: 3px;
+}
+
+/* === GRID === */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  padding: 0 10px;
+}
+
+/* === CARD === */
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card a img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.card:hover a img {
+  transform: scale(1.05);
+}
+
+.card p {
+  padding: 15px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* === FOOTER === */
+footer {
+  text-align: center;
+  padding: 25px 10px;
+  font-size: 0.9rem;
+  color: #555;
+  background: #f0f0f0;
 }
