@@ -10,7 +10,7 @@
 </head>
 <body>
   <header class="hero">
-    <!-- Hamburger Menu Container: parent wraps icon, label, and dropdown -->
+    <!-- Hamburger Menu Container -->
     <div class="nav-link menu-nav-link" id="menu-container" tabindex="0" aria-haspopup="true" aria-expanded="false">
       <span class="icon" id="hamburger-btn" aria-label="Toggle menu" role="button" tabindex="0">
         <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -84,7 +84,7 @@
   <script>
     const menuContainer = document.getElementById('menu-container');
 
-    // Toggle menu open/close on click and keyboard "Enter"
+    // Toggle menu open/close on click
     menuContainer.addEventListener('click', function(e) {
       if (!menuContainer.classList.contains('open')) {
         menuContainer.classList.add('open');
@@ -94,6 +94,8 @@
         menuContainer.setAttribute('aria-expanded', 'false');
       }
     });
+
+    // Toggle on keyboard Enter/Space
     menuContainer.addEventListener('keydown', function(e) {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -111,6 +113,8 @@
         menuContainer.blur();
       }
     });
+
+    // Close menu when clicking outside
     document.addEventListener('mousedown', function(e) {
       if (!menuContainer.contains(e.target)) {
         menuContainer.classList.remove('open');
