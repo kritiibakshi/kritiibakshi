@@ -40,20 +40,26 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* === ICON NAV (Hamburger and Right-side) === */
-.nav-link {
+/* === NAV ICONS (Hamburger and Right-side) === */
+
+/* Root class for all nav icons */
+.nav-link,
+.menu-nav-link {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Inter', sans-serif;
 }
 
 /* Hamburger - top left */
-#hamburger-nav-link.nav-link {
+.menu-nav-link {
   position: absolute;
   top: 20px;
   left: 30px;
   z-index: 110;
+  flex-direction: column;
+  outline: none;
 }
 
 /* Social stack - top right */
@@ -66,7 +72,7 @@ body {
   z-index: 100;
 }
 
-/* Consistent Icon Button Style */
+/* Icon Button Style */
 .icon {
   display: flex;
   align-items: center;
@@ -75,25 +81,17 @@ body {
   height: 36px;
   padding: 6px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.9);
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  color: #222;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
   filter: invert(0%) brightness(0%);
   transition: background 0.3s, filter 0.3s, box-shadow 0.3s;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
   cursor: pointer;
 }
 
-.nav-link:hover .icon,
-.nav-link:focus .icon {
-  background: #e0e0e0;
-  filter: invert(30%) brightness(1.2);
-  outline: none;
-}
-.nav-link:focus {
-  outline: 2px solid #4caf50;
-  outline-offset: 3px;
-}
-
-/* Hamburger gets crisp icon via SVG */
+/* SVG hamburger inherits parent color */
 #hamburger-btn svg {
   display: block;
   width: 24px;
@@ -101,41 +99,80 @@ body {
   color: #222;
 }
 
-/* Show label on hover/focus under icon buttons */
-.nav-link::after {
-  content: attr(data-label);
-  position: absolute;
-  bottom: -28px;
-  left: 50%;
-  transform: translateX(-50%) translateY(6px);
-  font-size: 0.7rem;
-  padding: 4px 6px;
-  color: #888;
-  background: #f2f2f2;
-  border-radius: 4px;
-  opacity: 0;
-  white-space: nowrap;
-  pointer-events: none;
-  transition: opacity 0.3s, transform 0.3s;
+/* Hover/Focus Effects */
+.nav-link:hover .icon,
+.nav-link:focus .icon,
+.menu-nav-link:hover .icon,
+.menu-nav-link:focus .icon {
+  background: #e0e0e0;
+  filter: invert(30%) brightness(1.2);
+  outline: none;
 }
 
+.menu-nav-link:focus,
+.nav-link:focus {
+  outline: 2px solid #4caf50;
+  outline-offset: 3px;
+}
+
+/* Dropdown label style for both nav and hamburger */
+.nav-link::after,
+.menu-nav-link .dropdown-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #888;
+  border-radius: 4px;
+  background: #f2f2f2;
+  padding: 4px 6px;
+  margin-top: 2px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s, transform 0.3s;
+  position: absolute;
+  left: 50%;
+  bottom: -28px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Show label on hover or focus */
+.menu-nav-link:hover .dropdown-label,
+.menu-nav-link:focus .dropdown-label,
 .nav-link:hover::after,
 .nav-link:focus::after {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transform: translateY(0);
+}
+
+/* Icon nav right (labels via ::after) */
+.nav-link::after {
+  content: attr(data-label);
 }
 
 /* === HAMBURGER MENU DROPDOWN === */
 .hamburger-menu {
   position: absolute;
-  top: 60px;
-  left: 20px;
-  background: #333;
+  top: 50px;
+  left: 0;
+  background: #fff;
   border-radius: 8px;
   padding: 10px 20px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.18);
   min-width: 150px;
-  z-index: 105;
+  z-index: 115;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px) scale(0.98);
+  transition: opacity 0.25s, transform 0.22s;
+}
+
+.menu-nav-link:hover .hamburger-menu,
+.menu-nav-link:focus-within .hamburger-menu,
+.menu-nav-link.open .hamburger-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
 }
 
 .hamburger-menu ul {
@@ -151,17 +188,21 @@ body {
 }
 
 .hamburger-menu a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+  text-decoration: none;
   display: block;
-  transition: color 0.3s ease;
+  padding: 4px 0;
+  transition: color 0.3s, background 0.2s;
+  border-radius: 3px;
 }
 
 .hamburger-menu a:hover,
 .hamburger-menu a:focus {
   color: #4caf50;
+  background: #f7f7f7;
   outline: none;
 }
 
@@ -249,11 +290,7 @@ footer {
   .hero h1 {
     font-size: 2.5rem;
   }
-  .hamburger-menu {
-    min-width: 120px;
-    padding: 8px 12px;
-  }
-  .hamburger-menu a {
-    font-size: 0.95rem;
-  }
+  .menu-nav-link .icon { width: 34px; height: 34px; }
+  .hamburger-menu { min-width: 110px; padding: 8px 13px; }
+  .hamburger-menu a { font-size: .95rem; }
 }
