@@ -1,4 +1,3 @@
-/* === RESET === */
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +11,6 @@ body {
   line-height: 1.6;
 }
 
-/* === HERO === */
 .hero {
   position: relative;
   height: 90vh;
@@ -27,6 +25,7 @@ body {
   padding: 0 60px;
 }
 
+/* Hero Heading */
 .hero h1 {
   font-family: 'Playfair Display', serif;
   font-size: 4rem;
@@ -40,26 +39,17 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* === NAV ICONS (Hamburger and Right-side) === */
-
-/* Root class for all nav icons */
-.nav-link,
-.menu-nav-link {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Inter', sans-serif;
-}
-
 /* Hamburger - top left */
 .menu-nav-link {
   position: absolute;
   top: 20px;
   left: 30px;
   z-index: 110;
+  display: flex;
   flex-direction: column;
+  align-items: center;
   outline: none;
+  font-family: 'Inter', sans-serif;
 }
 
 /* Social stack - top right */
@@ -91,7 +81,6 @@ body {
   cursor: pointer;
 }
 
-/* SVG hamburger inherits parent color */
 #hamburger-btn svg {
   display: block;
   width: 24px;
@@ -99,11 +88,10 @@ body {
   color: #222;
 }
 
-/* Hover/Focus Effects */
-.nav-link:hover .icon,
-.nav-link:focus .icon,
+.menu-nav-link:focus .icon,
 .menu-nav-link:hover .icon,
-.menu-nav-link:focus .icon {
+.nav-link:hover .icon,
+.nav-link:focus .icon {
   background: #e0e0e0;
   filter: invert(30%) brightness(1.2);
   outline: none;
@@ -115,9 +103,9 @@ body {
   outline-offset: 3px;
 }
 
-/* Dropdown label style for both nav and hamburger */
-.nav-link::after,
-.menu-nav-link .dropdown-label {
+/* Hamburger/Icons label popups */
+.menu-nav-link .dropdown-label,
+.nav-link::after {
   font-family: 'Inter', sans-serif;
   font-size: 0.7rem;
   font-weight: 400;
@@ -136,7 +124,6 @@ body {
   white-space: nowrap;
 }
 
-/* Show label on hover or focus */
 .menu-nav-link:hover .dropdown-label,
 .menu-nav-link:focus .dropdown-label,
 .nav-link:hover::after,
@@ -145,17 +132,16 @@ body {
   transform: translateY(0);
 }
 
-/* Icon nav right (labels via ::after) */
 .nav-link::after {
   content: attr(data-label);
 }
 
-/* === HAMBURGER MENU DROPDOWN === */
+/* Hamburger Dropdown Menu */
 .hamburger-menu {
   position: absolute;
   top: 50px;
   left: 0;
-  background: #fff;
+  background: #fff;             /* White background */
   border-radius: 8px;
   padding: 10px 20px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.18);
@@ -165,6 +151,7 @@ body {
   pointer-events: none;
   transform: translateY(10px) scale(0.98);
   transition: opacity 0.25s, transform 0.22s;
+  text-align: left;             /* Left-align text */
 }
 
 .menu-nav-link:hover .hamburger-menu,
@@ -191,12 +178,13 @@ body {
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 600;
-  color: #222;
+  color: #000;                /* Black text */
   text-decoration: none;
   display: block;
   padding: 4px 0;
-  transition: color 0.3s, background 0.2s;
   border-radius: 3px;
+  transition: color 0.3s, background 0.2s;
+  text-align: left;
 }
 
 .hamburger-menu a:hover,
@@ -206,7 +194,7 @@ body {
   outline: none;
 }
 
-/* === GRID WORK SECTION === */
+/* === Grid Section === */
 .work {
   padding: 80px 20px;
   max-width: 1200px;
@@ -276,7 +264,7 @@ body {
   font-weight: 500;
 }
 
-/* === FOOTER === */
+/* Footer */
 footer {
   text-align: center;
   padding: 25px 10px;
@@ -285,7 +273,7 @@ footer {
   background: #f0f0f0;
 }
 
-/* === RESPONSIVE ADJUSTMENT === */
+/* Responsive Tweaks */
 @media (max-width: 480px) {
   .hero h1 {
     font-size: 2.5rem;
