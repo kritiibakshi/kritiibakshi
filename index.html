@@ -10,7 +10,7 @@
 </head>
 <body>
   <header class="hero">
-    <!-- Hamburger Menu Container -->
+    <!-- Hamburger Menu Container: parent wraps icon, label, and dropdown -->
     <div class="nav-link menu-nav-link" id="menu-container" tabindex="0" aria-haspopup="true" aria-expanded="false">
       <span class="icon" id="hamburger-btn" aria-label="Toggle menu" role="button" tabindex="0">
         <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -20,7 +20,7 @@
         </svg>
       </span>
       <span class="dropdown-label">Menu</span>
-      <nav class="hamburger-menu" id="hamburger-menu" tabindex="-1" aria-label="Hamburger menu">
+      <nav class="hamburger-menu" id="hamburger-menu" aria-label="Hamburger menu">
         <ul>
           <li><a href="https://www.behance.net/kritibakshi1" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
           <li><a href="#">Visit Shop</a></li>
@@ -28,7 +28,7 @@
       </nav>
     </div>
 
-    <!-- Right side nav icons -->
+    <!-- Right-side social/contact icon nav -->
     <nav class="topnav">
       <a href="https://www.behance.net/kritibakshi1" target="_blank" rel="noopener noreferrer" class="nav-link" data-label="Behance">
         <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/behance.svg" alt="Behance Icon" loading="lazy" class="icon" />
@@ -84,7 +84,7 @@
   <script>
     const menuContainer = document.getElementById('menu-container');
 
-    // Toggle menu open/close on click
+    // Toggle menu open/close on click and keyboard "Enter"
     menuContainer.addEventListener('click', function(e) {
       if (!menuContainer.classList.contains('open')) {
         menuContainer.classList.add('open');
@@ -94,21 +94,27 @@
         menuContainer.setAttribute('aria-expanded', 'false');
       }
     });
-
-    // Close menu when clicking outside
-    document.addEventListener('mousedown', function(e) {
-      if (!menuContainer.contains(e.target)) {
-        menuContainer.classList.remove('open');
-        menuContainer.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Close menu on Escape key
     menuContainer.addEventListener('keydown', function(e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        if (!menuContainer.classList.contains('open')) {
+          menuContainer.classList.add('open');
+          menuContainer.setAttribute('aria-expanded', 'true');
+        } else {
+          menuContainer.classList.remove('open');
+          menuContainer.setAttribute('aria-expanded', 'false');
+        }
+      }
       if (e.key === "Escape") {
         menuContainer.classList.remove('open');
         menuContainer.setAttribute('aria-expanded', 'false');
         menuContainer.blur();
+      }
+    });
+    document.addEventListener('mousedown', function(e) {
+      if (!menuContainer.contains(e.target)) {
+        menuContainer.classList.remove('open');
+        menuContainer.setAttribute('aria-expanded', 'false');
       }
     });
   </script>
