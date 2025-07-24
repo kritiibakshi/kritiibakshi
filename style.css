@@ -123,6 +123,7 @@ body {
   position: absolute;
   left: 50%;
   bottom: -28px;
+  transform: translateX(-50%) translateY(6px);
   pointer-events: none;
   white-space: nowrap;
 }
@@ -131,13 +132,23 @@ body {
   content: attr(data-label); 
 }
 
-/* Show labels on hover/focus (but NOT the dropdown menu) */
+/* Show labels ONLY on hover/focus when menu is NOT open */
 .nav-link:hover::after,
-.nav-link:focus::after,
+.nav-link:focus::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 .menu-nav-link:hover .dropdown-label,
 .menu-nav-link:focus .dropdown-label {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Hide label when menu is open */
+.menu-nav-link.open .dropdown-label {
+  opacity: 0;
+  transform: translateX(-50%) translateY(6px);
 }
 
 /* Hamburger Dropdown menu - ONLY shows when .open class is present */
