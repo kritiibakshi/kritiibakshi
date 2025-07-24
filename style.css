@@ -39,32 +39,29 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* === TOP NAV ICONS WITH HOVER LABELS === */
+/* === TOP NAV ICONS === */
 .topnav {
   position: absolute;
   top: 20px;
   right: 30px;
   display: flex;
-  align-items: center;
   gap: 18px;
   z-index: 100;
 }
 
 .nav-link {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
 }
 
 .icon {
   width: 28px;
   height: 28px;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.9);
   padding: 6px;
   border-radius: 50%;
   filter: invert(0%) brightness(0%);
-  transition: transform 0.3s ease, background 0.3s ease, filter 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .nav-link:hover .icon {
@@ -73,7 +70,6 @@ body {
   filter: invert(100%);
 }
 
-/* Hover Label */
 .nav-link::after {
   content: attr(data-label);
   position: absolute;
@@ -129,7 +125,6 @@ body {
   padding: 0 10px;
 }
 
-/* === CARD === */
 .card {
   border-radius: 12px;
   overflow: hidden;
