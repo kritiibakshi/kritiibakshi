@@ -24,7 +24,7 @@ body {
   justify-content: center;
   text-align: center;
   color: #fff;
-  padding: 0 60px; /* Extra space for hamburger on left */
+  padding: 0 60px;
 }
 
 .hero h1 {
@@ -40,7 +40,23 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* === ICON NAV === */
+/* === ICON NAV (Hamburger and Right-side) === */
+.nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hamburger - top left */
+#hamburger-nav-link.nav-link {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  z-index: 110;
+}
+
+/* Social stack - top right */
 .topnav {
   position: absolute;
   top: 20px;
@@ -50,48 +66,103 @@ body {
   z-index: 100;
 }
 
-.nav-link {
-  position: relative;
+/* Consistent Icon Button Style */
+.icon {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
   padding: 6px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255,255,255,0.9);
   filter: invert(0%) brightness(0%);
-  transition: all 0.3s ease;
+  transition: background 0.3s, filter 0.3s, box-shadow 0.3s;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  cursor: pointer;
 }
 
-.nav-link:hover .icon {
+.nav-link:hover .icon,
+.nav-link:focus .icon {
   background: #e0e0e0;
   filter: invert(30%) brightness(1.2);
+  outline: none;
+}
+.nav-link:focus {
+  outline: 2px solid #4caf50;
+  outline-offset: 3px;
 }
 
-/* Label below nav icons */
+/* Hamburger gets crisp icon via SVG */
+#hamburger-btn svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  color: #222;
+}
+
+/* Show label on hover/focus under icon buttons */
 .nav-link::after {
   content: attr(data-label);
   position: absolute;
   bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
   font-size: 0.7rem;
   padding: 4px 6px;
   color: #888;
   background: #f2f2f2;
   border-radius: 4px;
   opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
   white-space: nowrap;
   pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link:focus::after {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
+}
+
+/* === HAMBURGER MENU DROPDOWN === */
+.hamburger-menu {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  background: #333;
+  border-radius: 8px;
+  padding: 10px 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  min-width: 150px;
+  z-index: 105;
+}
+
+.hamburger-menu ul {
+  list-style: none;
+}
+
+.hamburger-menu ul li {
+  margin-bottom: 12px;
+}
+
+.hamburger-menu ul li:last-child {
+  margin-bottom: 0;
+}
+
+.hamburger-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.hamburger-menu a:hover,
+.hamburger-menu a:focus {
+  color: #4caf50;
+  outline: none;
 }
 
 /* === GRID WORK SECTION === */
@@ -173,89 +244,16 @@ footer {
   background: #f0f0f0;
 }
 
-/* === HAMBURGER MENU === */
-
-/* Hamburger Button */
-#hamburger-btn {
-  position: absolute;
-  top: 20px;
-  left: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 28px;
-  height: 24px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 110; /* Above other elements */
-  padding: 0;
-}
-
-#hamburger-btn:focus {
-  outline: 2px solid #4caf50;
-}
-
-#hamburger-btn .bar {
-  width: 100%;
-  height: 3px;
-  background-color: #fff; /* Matches hero text color */
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-/* Hamburger Menu Panel */
-.hamburger-menu {
-  position: absolute;
-  top: 60px; /* Just below button */
-  left: 20px;
-  background: #333; /* Dark background for contrast */
-  border-radius: 8px;
-  padding: 10px 20px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  min-width: 150px;
-  z-index: 105;
-}
-
-.hamburger-menu ul {
-  list-style: none;
-}
-
-.hamburger-menu ul li {
-  margin-bottom: 12px;
-}
-
-.hamburger-menu ul li:last-child {
-  margin-bottom: 0;
-}
-
-.hamburger-menu a {
-  color: #fff; /* White text */
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  display: block;
-  transition: color 0.3s ease;
-}
-
-.hamburger-menu a:hover,
-.hamburger-menu a:focus {
-  color: #4caf50; /* Accent green on hover/focus */
-  outline: none;
-}
-
-/* Responsive: Optional smaller font on smaller screens */
+/* === RESPONSIVE ADJUSTMENT === */
 @media (max-width: 480px) {
   .hero h1 {
     font-size: 2.5rem;
   }
-
   .hamburger-menu {
-    min-width: 130px;
-    padding: 8px 15px;
+    min-width: 120px;
+    padding: 8px 12px;
   }
-
   .hamburger-menu a {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 }
